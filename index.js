@@ -16,22 +16,7 @@ inquirer.prompt([
         name: 'version'
     }
 ]).then(response => {
-    switch (response.version) {
-        case 'major':
-            ++version.major;
-            break;
-
-        case 'minor':
-            ++version.minor;
-            break;
-
-        case 'patch':
-            ++version.patch;
-            break;
-
-        default:
-            break;
-    }
+    ++version[response.version];
 
     exec(`npm version ${version.major}.${version.minor}.${version.patch} && git push --tags`);
 });
